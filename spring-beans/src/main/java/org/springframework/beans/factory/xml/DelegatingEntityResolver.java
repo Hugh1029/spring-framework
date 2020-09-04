@@ -59,7 +59,9 @@ public class DelegatingEntityResolver implements EntityResolver {
 	 * (can be {@code null}) to use the default ClassLoader)
 	 */
 	public DelegatingEntityResolver(@Nullable ClassLoader classLoader) {
+		// dtd使用BeansDtdResolver
 		this.dtdResolver = new BeansDtdResolver();
+		// xsd使用PluggableSchemaResolver
 		this.schemaResolver = new PluggableSchemaResolver(classLoader);
 	}
 
@@ -83,6 +85,7 @@ public class DelegatingEntityResolver implements EntityResolver {
 			throws SAXException, IOException {
 
 		if (systemId != null) {
+			// 根据systemId选择
 			if (systemId.endsWith(DTD_SUFFIX)) {
 				return this.dtdResolver.resolveEntity(publicId, systemId);
 			}

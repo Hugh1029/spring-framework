@@ -154,6 +154,8 @@ public interface Resource extends InputStreamSource {
 	 * @param relativePath the relative path (relative to this resource)
 	 * @return the resource handle for the relative resource
 	 * @throws IOException if the relative resource cannot be determined
+	 *
+	 * 根据资源的相对路径创建新资源
 	 */
 	Resource createRelative(String relativePath) throws IOException;
 
